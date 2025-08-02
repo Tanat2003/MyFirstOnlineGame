@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -8,19 +10,37 @@ public class GameVisual : NetworkBehaviour
     [SerializeField] private Transform crossPrefab;
     [SerializeField] private Transform circlePrefab;
     [SerializeField] private Transform lineCompletePrefab;
+    private List<GameObject> visualGameObjectList;
 
-
+    private void Awake()
+    {
+        visualGameObjectList = new List<GameObject>();
+    }
 
     private void Start()
     {
 
         GameManager.Instance.OnClickOnGridPosition += GameManager_OnClickOnGridPos;
+        GameManager.Instance.OnRematach += GameManager_OnRematach;
         GameManager.Instance.OnGameWin += GameManager_OnGameWin;
 
+
+    }
+
+    private void GameManager_OnRematach(object sender, System.EventArgs e)
+    {
+        foreach (GameObject go in visualGameObjectList)
+        {
+            Destroy(go);
+        }
+        visualGameObjectList.Clear();
     }
 
     private void GameManager_OnGameWin(object sender, GameManager.OnGameWinEventArgs e)
     {
+        if (!NetworkManager.Singleton.IsServer)
+            return;
+
         float eulerZ = 0f;
         switch (e.line.orientation)
         {
@@ -36,6 +56,8 @@ public class GameVisual : NetworkBehaviour
             (e.line.centerGridPosition.x, e.line.centerGridPosition.y), Quaternion.Euler(0,0,eulerZ));
 
         lineCompleteTrasfrom.GetComponent<NetworkObject>().Spawn(true);
+
+        visualGameObjectList.Add(lineCompleteTrasfrom.gameObject);
     }
 
     private void GameManager_OnClickOnGridPos(object sender, GameManager.OnClickOnGridPositionEventArgs e)
@@ -67,7 +89,7 @@ public class GameVisual : NetworkBehaviour
 
         Transform SpawnObj = Instantiate(prefab, GetGridWorldPosition(x, y), Quaternion.identity);
         SpawnObj.GetComponent<NetworkObject>().Spawn(true); //Spawn Objectã¹ Global Space(server)
-
+        visualGameObjectList.Add(SpawnObj.gameObject);
     }
 
 

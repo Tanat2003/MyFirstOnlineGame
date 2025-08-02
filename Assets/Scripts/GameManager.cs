@@ -16,9 +16,13 @@ public class GameManager : NetworkBehaviour
 
     public event EventHandler OnGameStarted;
     public event EventHandler<OnGameWinEventArgs> OnGameWin;
+
+    public event EventHandler OnRematach;
+    public event EventHandler OnGameTie;
     public class OnGameWinEventArgs : EventArgs
     {
         public Line line;
+        public PlayerType winPlayerType;
     }
     public event EventHandler OnCurrentPlayAblePlayerTypeChange;
     public enum PlayerType
@@ -41,7 +45,7 @@ public class GameManager : NetworkBehaviour
         public Vector2Int centerGridPosition;
         public Orientation orientation;
     }
-    
+
     private PlayerType localPlayerType;
     private List<Line> lineList;
     private NetworkVariable<PlayerType> currentPlayAblePlayerType = new NetworkVariable<PlayerType>(); //§Ë“°≈“ß∑’Ë®–„™È„πServer°—∫clientµ≈Õ¥
@@ -218,21 +222,76 @@ public class GameManager : NetworkBehaviour
     }
     private void TestWin()
     {
-        foreach(Line line in lineList)
+        for (int i = 0; i < lineList.Count; i++)
         {
-            if(TestWinnerLineWithLineStruct(line))
+            Line line = lineList[i];
+
+            if (TestWinnerLineWithLineStruct(line))
             {
                 Debug.Log("Winner");
                 currentPlayAblePlayerType.Value = PlayerType.None;
-                OnGameWin?.Invoke(this, new OnGameWinEventArgs
-                {
-                    line = line
-                });
+                TriggerOnGameWinRpc(i, playerTypeArray[line.centerGridPosition.x, line.centerGridPosition.y]);
                 break;
             }
         }
-        
+        bool hasTie = true;
+        for (int x = 0; x < playerTypeArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < playerTypeArray.GetLength(1); y++)
+            {
+                if (playerTypeArray[x, y] == PlayerType.None)
+                {
+                    hasTie = false;
+                    break;
+                }
+            }
+
+        }
+        if (hasTie)
+        {
+            TriggerOnGameTieRpc();
+        }
     }
+    [Rpc(SendTo.ClientsAndHost)]
+    private void TriggerOnGameTieRpc()
+    {
+        OnGameTie?.Invoke(this, EventArgs.Empty);
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void TriggerOnGameWinRpc(int lineIndex,PlayerType winPlayerType)
+    {
+        Line line = lineList[lineIndex];
+        OnGameWin?.Invoke(this, new OnGameWinEventArgs
+        {
+            line = line,
+            winPlayerType = winPlayerType,
+        });
+
+    }
+    [Rpc(SendTo.Server)]
+    public void RematchRpc()
+    {
+        for (int x = 0; x < playerTypeArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < playerTypeArray.GetLength(1); y++)
+            {
+                playerTypeArray[x,y] = PlayerType.None;
+                
+            }
+        }
+        currentPlayAblePlayerType.Value = PlayerType.Cross;
+        TriggerOnReMatchRpc();
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void TriggerOnReMatchRpc()
+    {
+        OnRematach?.Invoke(this, EventArgs.Empty);
+    }
+
     public PlayerType GetLocalPlayerType() => localPlayerType;
     public PlayerType GetCurrentPlayAblePlayerType() => currentPlayAblePlayerType.Value;
+
+    
 }

@@ -14,39 +14,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.00
   subtype: tictactoengofree
-  lastShownTimestamp: 1750660742
+  lastShownTimestamp: 1751432336
   lastUpdateResponse:
     version: 1.00
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1750660742
+  checkedLastUpdateTimestamp: 1751432336
   lastQOTDResponse:
-    questionId: 193
-    questionText: What will happen on January 19, 2038 at 03:14:07?
-    answerA: Armagedon
-    answerB: End of Unix Time
-    answerC: Half-Life 3 release date
+    questionId: 196
+    questionText: 'Does this variable get reset when you load a different Scene?
+
+      <p>private
+      static int score;</p>'
+    answerA: Yes
+    answerB: No
+    answerC: Only when loading the Main Menu
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1750660742
+  lastQotdTimestamp: 1751432336
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/ultimateOverview70_6FreeUpdate.png
-    topText: Learn how to use 70 Tools and Features! (Unity 6 Updated)
-    topLink: ultimateunityoverview
-    bottomText: My 10+ Years of C# Knowledge in 1 Course!
-    bottomLink: csharpcourse
-  lastDynamicHeaderTimestamp: 1750660742
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/cSharpCourseNewBeginnerProjects.png
+    topText: I just updated my C# course with 10 FUN Beginner Projects! Learn by
+      DOING!
+    topLink: csharpcourse
+    bottomText: AWESOME NEW Unity Bundle with Tools and Assets 97% OFF!
+    bottomLink: humblebundle
+  lastDynamicHeaderTimestamp: 1751432336
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1750660742
+  websiteLatestMessageTimestamp: 1751432336
   websiteLatestVideos:
     videos:
-    - youTubeId: Nv-pG1v_TaM
-      title: TOP 10 NEW Systems and Tools JUNE 2025! | Unity Asset Store
-    - youTubeId: KrjXYXGdnj8
-      title: How to BREAK your Desktop!
-    - youTubeId: AD5HtjUun5g
-      title: Which Unity Version should you use?
-    - youTubeId: 2UP_g58SDKM
-      title: TOP 10 FREE NEW Assets JUNE 2025!
-  websiteLatestVideosTimestamp: 1750660742
+    - youTubeId: K0di3MEm70U
+      title: Learn C# Making Beginner Projects! (FizzBuzz, Hangman - SOON!)
+    - youTubeId: 6WUJ3z9EGnI
+      title: TOP 20 Visual Assets to INSPIRE YOU! (JUNE 2025)
+    - youTubeId: du6S-egCx1s
+      title: Getting Started with Unity AI (Assistant, Generators, Developer Data
+        Framework)
+    - youTubeId: tFU4cO_m5Xo
+      title: TOP 10 NEW Games, Made with Unity! (MAY 2025)
+  websiteLatestVideosTimestamp: 1751432336
