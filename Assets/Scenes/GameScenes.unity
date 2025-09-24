@@ -352,7 +352,6 @@ RectTransform:
   - {fileID: 248689412}
   - {fileID: 1323641398}
   - {fileID: 703121998}
-  - {fileID: 1711926958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1597,6 +1596,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1022706585}
+  - {fileID: 1711926958}
   m_Father: {fileID: 214218903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   resultTxt: {fileID: 118209402}
   winColor: {r: 0.33875537, g: 1, b: 0, a: 1}
   loseColor: {r: 0.8867924, g: 0.4647231, b: 0.09871833, a: 1}
-  rematchButton: {fileID: 0}
+  rematchButton: {fileID: 1711926959}
 --- !u!1 &716803876
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,13 +3097,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711926957}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.6503, y: 3.1327999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 447725517}
-  m_Father: {fileID: 214218903}
+  m_Father: {fileID: 703121998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
